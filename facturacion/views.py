@@ -1,11 +1,10 @@
-from django.views.generic import TemplateView, ListView, DetailView, DeleteView, CreateView
+from django.views.generic import TemplateView, ListView, DetailView, DeleteView, CreateView, View
 from facturas.models import Persona, Producto
 from django.urls import reverse_lazy
 from django import forms
 
 # PDF
-from django.http import HttpResponse
-from reportlab.pdfgen import canvas
+from facturacion.render import Render
 
 
 class HomeView(ListView):
@@ -37,3 +36,13 @@ class CreateProductos(CreateView):
     fields = ['nombre', 'precio', 'iva_aplicable', 'cantidad']
     template_name = "createproduct.html"
     success_url = reverse_lazy('createPerson')
+
+
+class Pdf(View):
+
+    def get(self, request):
+        params = {
+            'request': request,
+            'message': 'Hola Mundo'
+        }
+        return Render.render('pdf.html', params)

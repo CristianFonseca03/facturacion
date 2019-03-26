@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block container %}
+
+<div class="container-fluid">
+    <div class="mt-3 d-flex flex-column align-items-center">
+        <h1>Facturación electronica</h1>
+        <div class="mt-5 d-flex flex-column align-items-center">
+            <h3>Crear una nueva factura</h3>
+            <a class="btn btn-outline-success" href="{% url 'createPerson'%}" role="button"><i
+                    class="fas fa-plus"></i></a>
+        </div>
+        <div class="mt-5">
+            <h3>Facturas creadas</h3>
+        </div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col" class="d-sm-block d-none">Correo</th>
+                    <th scope="col">Ver - Borrar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for person in object_list %}
+                <tr>
+                    <th scope="row">{{person.id}}</th>
+                    <td>{{person.nombre}}</td>
+                    <td>{{person.fecha|date:"d/m/y"}}</td>
+                    <td class="d-sm-block d-none">{{person.correo}}</td>
+                    <td>
+                        <a class="btn btn-outline-primary" href="{% url 'detail' person.id %}" role="button"><i
+                                class="fas fa-eye"></i></a>
+                        <a class="btn btn-outline-danger" href="{% url 'delete' person.id %}" role="button"><i
+                                class="fas fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock%}

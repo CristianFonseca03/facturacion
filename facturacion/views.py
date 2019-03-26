@@ -5,6 +5,7 @@ from django import forms
 
 # PDF
 from facturacion.render import Render
+from django.utils import timezone
 
 
 class HomeView(ListView):
@@ -33,16 +34,31 @@ class CreatePersona(CreateView):
 
 class CreateProductos(CreateView):
     model = Producto
-    fields = ['nombre', 'precio', 'iva_aplicable', 'cantidad']
+    fields = ['nombre', 'precio', 'cantidad']
     template_name = "createproduct.html"
     success_url = reverse_lazy('createPerson')
 
 
 class Pdf(View):
-
-    def get(self, request):
+    def get(self, request, pk):
+        person = Persona.objects.get(id=pk)
+        today = timezone.now()
+        products = person.productos.all()
+        iva = 0.0
+        total = 0
+        subtotal = 0.0
+        for product in products:
+            iva += product.total*0.19
+            total += product.total
+        subtotal = total-iva
         params = {
             'request': request,
-            'message': 'Hola Mundo'
+            'today': today,
+            'persona': person,
+            'products': products,
+            'iva': iva,
+            'subtotal': subtotal,
+            'total': total
+
         }
         return Render.render('pdf.html', params)

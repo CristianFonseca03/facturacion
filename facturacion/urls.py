@@ -24,5 +24,5 @@ urlpatterns = [
     path('delete/<int:pk>', DeletePersona.as_view(), name='delete'),
     path('create/', CreatePersona.as_view(), name='createPerson'),
     path('create/product/', CreateProductos.as_view(), name='createProduct'),
-    path('pdf/', Pdf.as_view(), name='pdf'),
+    path('pdf/<int:pk>', Pdf.as_view(), name='pdf'),
 ]

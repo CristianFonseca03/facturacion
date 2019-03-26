@@ -21,7 +21,7 @@
                     <th scope="col">Nombre</th>
                     <th scope="col">Fecha</th>
                     <th scope="col" class="d-sm-block d-none">Correo</th>
-                    <th scope="col">Ver - Borrar</th>
+                    <th scope="col">Ver - Borrar - PDF</th>
                 </tr>
             </thead>
             <tbody>
@@ -36,6 +36,8 @@
                                 class="fas fa-eye"></i></a>
                         <a class="btn btn-outline-danger" href="{% url 'delete' person.id %}" role="button"><i
                                 class="fas fa-trash-alt"></i></a>
+                        <a class="btn btn-outline-warning" href="{% url 'pdf' person.id %}" role="button"><i
+                                class="fas fa-file-pdf"></i></a>
                     </td>
                 </tr>
                 {% endfor %}

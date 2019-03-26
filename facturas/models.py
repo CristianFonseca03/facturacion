@@ -6,8 +6,12 @@ from django.db import models
 class Producto(models.Model):
     nombre = models.CharField('nombre', max_length=45)
     precio = models.PositiveIntegerField('precio')
-    iva_aplicable = models.BooleanField('se le aplica iva', default=True)
     cantidad = models.PositiveIntegerField('cantidad')
+    total = models.PositiveIntegerField('total')
+
+    def save(self, *args, **kwargs):
+        self.total = self.precio * self.cantidad
+        super(Producto, self).save(*args, **kwargs)
 
     class Meta:
         verbose_name = 'producto'
@@ -19,7 +23,7 @@ class Producto(models.Model):
 
 
 class Persona(models.Model):
-    id = models.AutoField(primary_key=True,)
+    id = models.AutoField(primary_key=True)
     nombre = models.CharField('nombre', max_length=45)
     lugar = models.CharField('lugar', max_length=45)
     fecha = models.DateField('fecha')

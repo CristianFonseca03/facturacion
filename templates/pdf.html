@@ -1,15 +1,117 @@
 <!DOCTYPE html>
-<html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Factura {{persona.nombre}}</title>
+    <style type="text/css">
+        @page {
+            size: A4;
+            margin: 2cm;
+        }
+
+        th,
+        td {
+            padding: 10px;
+        }
+    </style>
 </head>
 
 <body>
-    <h1>{{message}}</h1>
+    <table style="width:100%;padding: 10px;">
+        <tr>
+            <td>
+                <h1>FECHA: {{persona.lugar}}, {{persona.fecha}}</h1>
+            </td>
+            <td style="background-color: rgb(50, 115, 220);">
+                <h1 style="text-align: center">REMISIÓN NUMERO: 10-{{persona.id}}</h1>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h1>SEÑOR(ES): {{persona.nombre|title}}</h1>
+            </td>
+            <td>
+                <h1>NIT/CEDULA: {{persona.nit_cedula}}</h1>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h1>DIRECCION: {{persona.direccion}}</h1>
+            </td>
+            <td>
+                <h1>TELEFONO: {{persona.telefono}}</h1>
+            </td>
+        </tr>
+    </table>
+    <h1 style="text-align: center">Productos: </h1>
+    <table style="width:100%;border: 1px solid black">
+        <tr>
+            <th style="width=75px">
+                <h2>Cantidad</h2>
+            </th>
+            <th>
+                <h2>Nombre</h2>
+            </th>
+            <th>
+                <h2>Valor unitario</h2>
+            </th>
+            <th>
+                <h2>Valor total</h2>
+            </th>
+        </tr>
+        {% for producto in products %}
+        <tr>
+            <td style="width=75px;text-align:center">
+                <h2>{{producto.cantidad}}</h2>
+            </td>
+            <td style="text-align: center;">
+                <h2>{{producto.nombre|title}}</h2>
+            </td>
+            <td style="text-align: center;">
+                <h2>$ {{producto.precio}}</h2>
+            </td>
+            <td style="text-align: center;">
+                <h2>$ {{producto.total}}</h2>
+            </td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <td style="width=75px;text-align:center">
+            </td>
+            <td style="text-align: center;">
+            </td>
+            <td style="text-align: center;">
+                <h2>Subtotal</h2>
+            </td>
+            <td style="text-align: center;">
+                <h2>$ {{subtotal}}</h2>
+            </td>
+        </tr>
+        <tr>
+            <td style="width=75px;text-align:center">
+            </td>
+            <td style="text-align: center;">
+            </td>
+            <td style="text-align: center;">
+                <h2>IVA / 19%</h2>
+            </td>
+            <td style="text-align: center;">
+                <h2>$ {{iva}}</h2>
+            </td>
+        </tr>
+        <tr>
+            <td style="width=75px;text-align:center">
+            </td>
+            <td style="text-align: center;">
+            </td>
+            <td style="text-align: center;">
+                <h2>Total</h2>
+            </td>
+            <td style="text-align: center;">
+                <h2>$ {{total}}</h2>
+            </td>
+        </tr>
+    </table>
 </body>
 
 </html>

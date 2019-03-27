@@ -1,11 +1,23 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block title %}
+Facturación
+{% endblock%}
+
 {% block container %}
 
 <div class="container-fluid">
     <div class="mt-3 d-flex flex-column align-items-center">
-        <h1>Facturación electronica</h1>
+        <div class="d-flex flex-row align-items-center justify-content-around mt-4" style="width: 100%;">
+            <div class="circle bg-info d-flex justify-content-center flex-column text-center">
+                <i class="fas fa-file-invoice"></i>
+            </div>
+            <h2>Sistema de facturación</h2>
+            <div class="circle bg-info d-flex justify-content-center flex-column text-center">
+                <i class="fas fa-file-invoice"></i>
+            </div>
+        </div>
         <div class="mt-5 d-flex flex-column align-items-center">
             <h3>Crear una nueva factura</h3>
             <a class="btn btn-outline-success" href="{% url 'createPerson'%}" role="button"><i

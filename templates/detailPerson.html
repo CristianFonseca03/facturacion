@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block title %}
+Detalles : {{object.nombre}}
+{% endblock%}
+
 {% block container %}
 <div class="container">
     <div class="mt-3 d-flex flex-column align-items-center">
@@ -9,29 +13,41 @@
     <div class="mt-3 mb-5 d-flex flex-row justify-content-around">
         <div>
             <h3>Cliente:</h3>
-            <h4>{{object.nombre|title}}</h4>
+            <h4>
+                <p class="font-italic">{{object.nombre|title}}</p>
+            </h4>
             <h3>Cedula:</h3>
-            <h4>{{object.nit_cedula}}</h4>
+            <h4>
+                <p class="font-italic">{{object.nit_cedula}}</p>
+            </h4>
             <h3>Fecha:</h3>
-            <h4>{{object.fecha}}</h4>
+            <h4>
+                <p class="font-italic">{{object.fecha}}</p>
+            </h4>
             <h3>PDF:</h3>
             <a class="btn btn-outline-warning" href="{% url 'pdf' object.id %}" role="button"><i
                     class="fas fa-file-pdf"></i></a>
         </div>
         <div>
             <h3>Correo:</h3>
-            <h4>{{object.correo}}</h4>
+            <h4>
+                <p class="font-italic">{{object.correo}}</p>
+            </h4>
             <h3>Dirección:</h3>
-            <h4>{{object.direccion}}</h4>
+            <h4>
+                <p class="font-italic">{{object.direccion}}</p>
+            </h4>
             <h3>Telefono:</h3>
-            <h4>{{object.telefono}}</h4>
+            <h4>
+                <p class="font-italic">{{object.telefono}}</p>
+            </h4>
             <h3>XML:</h3>
             <a class="btn btn-outline-info" href="{% url 'xml' object.id %}" role="button"><i
                     class="fas fa-file-code"></i></a>
         </div>
     </div>
     <h3>Productos:</h3>
-    <table class="table table-striped">
+    <table class="table table-striped table-dark">
         <thead>
             <tr>
                 <th scope="col">Nombre</th>

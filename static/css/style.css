@@ -1,0 +1,12 @@
+body {
+    background-image: url("../img/background.png");
+    background-repeat: repeat;
+}
+
+.circle {
+    font-family: 'Russo One', sans-serif;
+    height: 75px;
+    width: 75px;
+    border-radius: 50%;
+    font-size: 40px;
+}

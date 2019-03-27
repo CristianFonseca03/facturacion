@@ -17,29 +17,35 @@
 </head>
 
 <body>
-    <table style="width:100%;padding: 10px;">
+    <img src="../static/img/panaderia.PNG" alt="">
+    <table style="width:100%;padding: 10px;border: 1px solid black;margin: 10px;">
         <tr>
             <td>
-                <h1>FECHA: {{persona.lugar}}, {{persona.fecha}}</h1>
+                <h1>Fecha: {{persona.fecha}}</h1>
             </td>
-            <td style="background-color: rgb(50, 115, 220);">
-                <h1 style="text-align: center">REMISIÓN NUMERO: 10-{{persona.id}}</h1>
+            <td>
+                <h1>Numero: {{persona.id}}</h1>
             </td>
         </tr>
         <tr>
             <td>
-                <h1>SEÑOR(ES): {{persona.nombre|title}}</h1>
-            </td>
-            <td>
-                <h1>NIT/CEDULA: {{persona.nit_cedula}}</h1>
+                <h1>Cuidad/Departamento: {{persona.lugar}}</h1>
             </td>
         </tr>
         <tr>
             <td>
-                <h1>DIRECCION: {{persona.direccion}}</h1>
+                <h1>Cliete: {{persona.nombre|title}}</h1>
             </td>
             <td>
-                <h1>TELEFONO: {{persona.telefono}}</h1>
+                <h1>Cedula: {{persona.nit_cedula}}</h1>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <h1>Direccion: {{persona.direccion}}</h1>
+            </td>
+            <td>
+                <h1>Celular: {{persona.telefono}}</h1>
             </td>
         </tr>
     </table>
@@ -75,11 +81,9 @@
             </td>
         </tr>
         {% endfor %}
+    </table>
+    <table style="width:100%;border: 1px solid black;margin: 50px;">
         <tr>
-            <td style="width=75px;text-align:center">
-            </td>
-            <td style="text-align: center;">
-            </td>
             <td style="text-align: center;">
                 <h2>Subtotal</h2>
             </td>
@@ -88,10 +92,6 @@
             </td>
         </tr>
         <tr>
-            <td style="width=75px;text-align:center">
-            </td>
-            <td style="text-align: center;">
-            </td>
             <td style="text-align: center;">
                 <h2>IVA / 19%</h2>
             </td>
@@ -100,10 +100,6 @@
             </td>
         </tr>
         <tr>
-            <td style="width=75px;text-align:center">
-            </td>
-            <td style="text-align: center;">
-            </td>
             <td style="text-align: center;">
                 <h2>Total</h2>
             </td>

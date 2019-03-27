@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block container %}
+<div class="container-fluid">
+    <div class="mt-3 d-flex flex-column align-items-center">
+        <div class="mt-5">
+            <h3>Facturas</h3>
+        </div>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Numero</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Ver</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for person in object_list %}
+                <tr>
+                    <th scope="row">{{person.id}}</th>
+                    <td>{{person.fecha}}</td>
+                    <td>{{person.nombre}}</td>
+                    <td>
+                        <a class="btn btn-primary" href="{% url 'detail' person.id %}" role="button">Ver
+                            Factura</i></a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a class="btn btn-primary" href="{% url 'start' %}" role="button">Regresar</a>
+    </div>
+</div>
+{% endblock%}

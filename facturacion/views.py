@@ -14,9 +14,13 @@ from django.http import HttpResponse
 from json2xml import json2xml
 
 
+class StartView(TemplateView):
+    template_name = "home.html"
+
+
 class HomeView(ListView):
     model = Persona
-    template_name = "home.html"
+    template_name = "facturas.html"
 
 
 class PersonDetail(DetailView):
@@ -33,7 +37,7 @@ class DeletePersona(DeleteView):
 class CreatePersona(CreateView):
     model = Persona
     fields = ['nombre', 'lugar', 'fecha', 'direccion',
-              'telefono', 'nit_cedula', 'productos', 'correo']
+              'telefono', 'nit_cedula', 'productos']
     template_name = "createPerson.html"
     success_url = reverse_lazy('home')
 
@@ -60,11 +64,10 @@ class Xml(View):
         params = {
             'fecha': person.fecha,
             'cliente': person.nombre,
-            'lugar': person.lugar,
+            'ciudad/departamento': person.lugar,
             'direccion': person.direccion,
             'telefono': person.telefono,
-            'nit/cedula': person.nit_cedula,
-            'correo': person.correo,
+            'cedula': person.nit_cedula,
             'productos': products,
             'subtotal': subtotal,
             'iva': iva,

@@ -14,6 +14,9 @@
             <h4>{{object.nit_cedula}}</h4>
             <h3>Fecha:</h3>
             <h4>{{object.fecha}}</h4>
+            <h3>PDF:</h3>
+            <a class="btn btn-outline-warning" href="{% url 'pdf' object.id %}" role="button"><i
+                    class="fas fa-file-pdf"></i></a>
         </div>
         <div>
             <h3>Correo:</h3>
@@ -22,6 +25,9 @@
             <h4>{{object.direccion}}</h4>
             <h3>Telefono:</h3>
             <h4>{{object.telefono}}</h4>
+            <h3>XML:</h3>
+            <a class="btn btn-outline-info" href="{% url 'xml' object.id %}" role="button"><i
+                    class="fas fa-file-code"></i></a>
         </div>
     </div>
     <h3>Productos:</h3>

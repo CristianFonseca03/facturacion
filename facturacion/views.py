@@ -7,6 +7,12 @@ from django import forms
 from facturacion.render import Render
 from django.utils import timezone
 
+# XML
+import json
+from django.core import serializers
+from django.http import HttpResponse
+from json2xml import json2xml
+
 
 class HomeView(ListView):
     model = Persona
@@ -37,6 +43,34 @@ class CreateProductos(CreateView):
     fields = ['nombre', 'precio', 'cantidad']
     template_name = "createproduct.html"
     success_url = reverse_lazy('createPerson')
+
+
+class Xml(View):
+    def get(self, request, pk):
+        person = Persona.objects.get(id=pk)
+        today = timezone.now()
+        products = person.productos.all()
+        iva = 0.0
+        total = 0
+        subtotal = 0.0
+        for product in products:
+            iva += product.total*0.19
+            total += product.total
+        subtotal = total-iva
+        params = {
+            'fecha': person.fecha,
+            'cliente': person.nombre,
+            'lugar': person.lugar,
+            'direccion': person.direccion,
+            'telefono': person.telefono,
+            'nit/cedula': person.nit_cedula,
+            'correo': person.correo,
+            'productos': products,
+            'subtotal': subtotal,
+            'iva': iva,
+            'total': total
+        }
+        return HttpResponse(json2xml.Json2xml(params).to_xml(), content_type='aplication/xml')
 
 
 class Pdf(View):

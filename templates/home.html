@@ -21,7 +21,7 @@
                     <th scope="col">Nombre</th>
                     <th scope="col">Fecha</th>
                     <th scope="col" class="d-sm-block d-none">Correo</th>
-                    <th scope="col">Ver - Borrar - PDF</th>
+                    <th scope="col">Ver - Borrar - PDF - XML</th>
                 </tr>
             </thead>
             <tbody>
@@ -32,12 +32,17 @@
                     <td>{{person.fecha|date:"d/m/y"}}</td>
                     <td class="d-sm-block d-none">{{person.correo}}</td>
                     <td>
-                        <a class="btn btn-outline-primary" href="{% url 'detail' person.id %}" role="button"><i
-                                class="fas fa-eye"></i></a>
-                        <a class="btn btn-outline-danger" href="{% url 'delete' person.id %}" role="button"><i
-                                class="fas fa-trash-alt"></i></a>
-                        <a class="btn btn-outline-warning" href="{% url 'pdf' person.id %}" role="button"><i
-                                class="fas fa-file-pdf"></i></a>
+                        <div class="btn-group" role="group" aria-label="Basic example">
+
+                            <a class="btn btn-outline-primary" href="{% url 'detail' person.id %}" role="button"><i
+                                    class="fas fa-eye"></i></a>
+                            <a class="btn btn-outline-danger" href="{% url 'delete' person.id %}" role="button"><i
+                                    class="fas fa-trash-alt"></i></a>
+                            <a class="btn btn-outline-warning" href="{% url 'pdf' person.id %}" role="button"><i
+                                    class="fas fa-file-pdf"></i></a>
+                            <a class="btn btn-outline-info" href="{% url 'xml' person.id %}" role="button"><i
+                                    class="fas fa-file-code"></i></a>
+                        </div>
                     </td>
                 </tr>
                 {% endfor %}
